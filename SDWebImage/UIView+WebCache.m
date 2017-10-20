@@ -65,6 +65,11 @@ static char TAG_ACTIVITY_SHOW;
                     completedBlock(image, error, cacheType, url);
                     return;
                 } else if (image) {
+                    CATransition *animation = [CATransition animation];
+                    animation.duration = .85f;
+                    animation.type = kCATransitionFade;
+                    animation.removedOnCompletion = YES;
+                    [sself.layer addAnimation:animation forKey:@"transition"];
                     [sself sd_setImage:image imageData:data basedOnClassOrViaCustomSetImageBlock:setImageBlock];
                     [sself sd_setNeedsLayout];
                 } else {
